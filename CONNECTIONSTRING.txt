@@ -1,0 +1,6 @@
+
+(localdb)\MSSQLLocalDB
+
+db-mssql16.pjwstk.edu.pl
+
+"server=localhost\\sqlexpress;database=animals;trusted_connection=true;TrustServerCertificate=True"
