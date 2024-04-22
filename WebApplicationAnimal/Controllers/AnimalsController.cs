@@ -38,5 +38,20 @@ namespace WebApplicationAnimal.Controllers
             var affectedCount = _animalService.AddAnimal(newAnimal);
             return StatusCode(StatusCodes.Status201Created);
         }
+
+        [HttpPut("{idAnimal:int}")]
+        [Consumes("application/json")]
+        public IActionResult UpdateAnimal(int idAnimal, Animal animal)
+        {
+            var affectedCount = _animalService.UpdateAnimal(idAnimal, animal);
+            return NoContent();
+        }
+        
+        [HttpDelete("{idAnimal:int}")]
+        public IActionResult DeleteAnimal(int idAnimal)
+        {
+            var affectedCount = _animalService.DeleteAnimal(idAnimal);
+            return NoContent();
+        }
     }
 }

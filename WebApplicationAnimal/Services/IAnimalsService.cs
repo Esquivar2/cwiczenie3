@@ -6,5 +6,7 @@ namespace WebApplicationAnimal.Services
     {
         IEnumerable<Animal> GetAnimals(string orderBy);
         int AddAnimal(Animal newAnimal);
+        int UpdateAnimal(int id, Animal animal);
+        int DeleteAnimal(int id);
     }
 }

@@ -25,6 +25,14 @@ namespace WebApplicationAnimal.Services
             return _animalsRepository.AddAnimal(newAnimal);
         }
 
+        public int UpdateAnimal(int id, Animal animal) 
+        {
+            return _animalsRepository.UpdateAnimal(id, animal);
+        }
 
+        public int DeleteAnimal(int id)
+        {
+            return _animalsRepository.DeleteAnimal(id); 
+        }
     }
 }

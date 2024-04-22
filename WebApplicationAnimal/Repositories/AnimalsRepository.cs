@@ -63,5 +63,44 @@ namespace WebApplicationAnimal.Repositories
             var affectedCount = cmd.ExecuteNonQuery();
             return affectedCount;
         }
+
+        public int UpdateAnimal(int id, Animal animal)
+        {
+            using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+            con.Open();
+
+            using var cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "UPDATE Animals SET Name=@Name, Description=@Description, Category=@Category, Area=@Area WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("@Name", animal.Name);
+            if (animal.Description != null)
+            {
+                cmd.Parameters.AddWithValue("@Description", animal.Description);
+            }
+            else
+            {
+                cmd.Parameters.AddWithValue("@Description", DBNull.Value);
+            }
+            cmd.Parameters.AddWithValue("@Category", animal.Category);
+            cmd.Parameters.AddWithValue("@Area", animal.Area);
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            var affectedCount = cmd.ExecuteNonQuery();
+            return affectedCount;
+        }
+
+        public int DeleteAnimal(int id)
+        {
+            using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
+            con.Open();
+
+            using var cmd = new SqlCommand();
+            cmd.Connection = con;
+            cmd.CommandText = "DELETE FROM Animals WHERE Id = @Id";
+            cmd.Parameters.AddWithValue("@Id", id);
+
+            var affectedCount = cmd.ExecuteNonQuery();
+            return affectedCount;
+        }
     }
 }
