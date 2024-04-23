@@ -4,9 +4,9 @@ namespace WebApplicationAnimal.Repositories
 {
     public interface IAnimalsRepository
     {
-        IEnumerable<Animal> FetchAnimals(string orderBy);
+        IEnumerable<AnimalDTO> FetchAnimals(string orderBy);
         int AddAnimal (Animal animal);
-        int UpdateAnimal(int id, Animal animal);
+        int UpdateAnimal(AnimalDTO animal);
         int DeleteAnimal(int id);
     }
 }

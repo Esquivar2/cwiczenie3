@@ -12,7 +12,7 @@ namespace WebApplicationAnimal.Repositories
             _configuration = configuration; 
         }
 
-        public IEnumerable<Animal> FetchAnimals(string orderBy)
+        public IEnumerable<AnimalDTO> FetchAnimals(string orderBy)
         {
             using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
             con.Open();
@@ -23,10 +23,10 @@ namespace WebApplicationAnimal.Repositories
             cmd.CommandText = $"SELECT Id, Name, Description, Category, Area FROM Animals ORDER BY {orderBy}";
 
             var dr = cmd.ExecuteReader();
-            var animals = new List<Animal>();
+            var animals = new List<AnimalDTO>();
             while (dr.Read())
             {
-                var animal = new Animal
+                var animal = new AnimalDTO
                 {
                     Id = (int)dr["Id"],
                     Name = dr["Name"].ToString(),
@@ -64,7 +64,7 @@ namespace WebApplicationAnimal.Repositories
             return affectedCount;
         }
 
-        public int UpdateAnimal(int id, Animal animal)
+        public int UpdateAnimal(AnimalDTO animal)
         {
             using var con = new SqlConnection(_configuration["ConnectionStrings:DefaultConnection"]);
             con.Open();
@@ -83,7 +83,7 @@ namespace WebApplicationAnimal.Repositories
             }
             cmd.Parameters.AddWithValue("@Category", animal.Category);
             cmd.Parameters.AddWithValue("@Area", animal.Area);
-            cmd.Parameters.AddWithValue("@Id", id);
+            cmd.Parameters.AddWithValue("@Id", animal.Id);
 
             var affectedCount = cmd.ExecuteNonQuery();
             return affectedCount;

@@ -13,7 +13,7 @@ namespace WebApplicationAnimal.Services
             _animalsRepository = animalsRepository;
         }
 
-        public IEnumerable<Animal> GetAnimals(string orderBy)
+        public IEnumerable<AnimalDTO> GetAnimals(string orderBy)
         {
             var animals = _animalsRepository.FetchAnimals(orderBy);
 
@@ -27,7 +27,15 @@ namespace WebApplicationAnimal.Services
 
         public int UpdateAnimal(int id, Animal animal) 
         {
-            return _animalsRepository.UpdateAnimal(id, animal);
+            var animalDTO = new AnimalDTO
+            {
+                Id = id,
+                Name = animal.Name,
+                Description = animal.Description,
+                Category = animal.Category,
+                Area = animal.Area,
+            };
+            return _animalsRepository.UpdateAnimal(animalDTO);
         }
 
         public int DeleteAnimal(int id)

@@ -25,8 +25,6 @@ namespace WebApplicationAnimal.Controllers
             {
                 return BadRequest("Invalid orderBy parameter. Available values: name, description, category, area.");
             }
-
-
             var animals = _animalService.GetAnimals(orderBy);
             return Ok(animals);
         }

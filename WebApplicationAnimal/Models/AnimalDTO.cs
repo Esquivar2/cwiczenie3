@@ -2,8 +2,10 @@
 
 namespace WebApplicationAnimal.Models
 {
-    public class Animal
+    public class AnimalDTO
     {
+        [Required]
+        public int Id { get; set; }
         [Required]
         [MaxLength(200)]
         public string Name { get; set; }
@@ -15,6 +17,5 @@ namespace WebApplicationAnimal.Models
         [Required]
         [MaxLength(200)]
         public string Area { get; set; }
-        
     }
 }
